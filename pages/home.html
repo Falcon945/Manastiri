@@ -1,0 +1,158 @@
+<!-- pages/home.html -->
+<section class="mt-12">
+  <h2 class="text-2xl font-bold accent-text mb-3">Istorijat hrišćanstva – sažeto</h2>
+  <div class="bg-white rounded-xl shadow p-6 leading-relaxed">
+    <p>
+      Hrišćanstvo nastaje u 1. veku u Judeji, širi se rimskim putevima i zajednicama dijaspore. Rani sabori
+      (Nikeja 325, Carigrad 381, Efes 431, Halkedon 451) formulišu ključna učenja i kanone. Milanskim ediktom (313)
+      prestaju progoni, a kasnije hrišćanstvo postaje dominantna religija u carstvu.
+    </p>
+  </div>
+</section>
+
+<section class="mt-12">
+  <div class="flex items-end justify-between gap-3">
+    <h2 class="text-2xl font-bold accent-text">Grane hrišćanstva</h2>
+    <div class="text-sm">
+      <button id="btnShowCompare" class="accent-text hover:underline">Prikaži poređenje</button>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    <article class="bg-white rounded-xl shadow p-5">
+      <h3 class="font-semibold text-lg">Pravoslavlje</h3>
+      <p class="text-gray-700 mt-1">
+        Istok hrišćanstva, zasniva se na kontinuitetu rane Crkve, liturgiji i sabornosti (sinodalnosti).
+        Autokefalne crkve (npr. Carigradska, Srpska) imaju sopstvenu upravu.
+      </p>
+    </article>
+    <article class="bg-white rounded-xl shadow p-5">
+      <h3 class="font-semibold text-lg">Katoličanstvo</h3>
+      <p class="text-gray-700 mt-1">
+        Zapadna tradicija sa centralnom ulogom Rimske Crkve. Papski primat i jedinstvena crkvena disciplina,
+        snažan naglasak na univerzalnosti i misionarstvu.
+      </p>
+    </article>
+  </div>
+
+  <div id="compareBox" class="mt-4 hidden">
+    <div class="bg-white rounded-xl shadow overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="accent-bg text-white">
+          <tr>
+            <th class="text-left px-4 py-3">Tema</th>
+            <th class="text-left px-4 py-3">Pravoslavlje</th>
+            <th class="text-left px-4 py-3">Katoličanstvo</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <tr>
+            <td class="px-4 py-3 font-medium">Uprava</td>
+            <td class="px-4 py-3">Sabornost autokefalnih crkava (sinodalnost).</td>
+            <td class="px-4 py-3">Papski primat i jedinstvena hijerarhija.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 font-medium">Liturgija</td>
+            <td class="px-4 py-3">Božanstvena Liturgija (npr. Jovana Zlatoustog), naglasak na ikonama.</td>
+            <td class="px-4 py-3">Misa (rimskog obreda), razvijen zapadni liturgijski korpus.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 font-medium">Teološki akcenti</td>
+            <td class="px-4 py-3">Misterija, predanje Otaca, deifikacija (theosis).</td>
+            <td class="px-4 py-3">Dogmatske definicije, učiteljstvo (magisterij), skolastika.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 font-medium">Jezik i praksa</td>
+            <td class="px-4 py-3">Više liturgijskih jezika; post, praznični ciklus.</td>
+            <td class="px-4 py-3">Univerzalni standard; različiti redovi i pobožnosti.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-500 mt-2">
+      Napomena: tabela je orijentaciona – istorijski i lokalni običaji mogu da se razlikuju.
+    </p>
+  </div>
+</section>
+
+<section class="mt-12">
+  <h2 class="text-2xl font-bold accent-text mb-3">Manastir i crkva – razlika</h2>
+  <div class="bg-white rounded-xl shadow p-6 grid md:grid-cols-2 gap-6">
+    <div>
+      <h3 class="font-semibold">Crkva (parohijska)</h3>
+      <ul class="list-disc pl-5 mt-2 text-gray-700 space-y-1">
+        <li>Parohijska zajednica vernika, redovna bogosluženja.</li>
+        <li>Upravljaju parosi/sveštenici; fokus na pastoralnom radu.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold">Manastir</h3>
+      <ul class="list-disc pl-5 mt-2 text-gray-700 space-y-1">
+        <li>Monaška zajednica (monasi/monahinje) pod tipikom i nastojateljem.</li>
+        <li>Život posvećen molitvi, poslušanju i zajedničkom pravilima.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="mt-12">
+  <h2 class="text-2xl font-bold accent-text mb-3">Sveštenik i monah – uloge</h2>
+  <div class="bg-white rounded-xl shadow p-6">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="font-semibold">Sveštenik (paroh)</h3>
+        <p class="text-gray-700 mt-1">
+          Rukopoložen za službu u parohiji: služi Liturgiju i tajne, propoveda, brine o vernicima i parohijskoj zajednici.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Monah</h3>
+        <p class="text-gray-700 mt-1">
+          Daje zavete (čistote, siromaštva, poslušnosti), živi po tipiku manastira; može biti i sveštenomonk (ako je rukopoložen).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-12">
+  <h2 class="text-2xl font-bold accent-text mb-4">Interesantnosti i pitanja</h2>
+
+  <details class="bg-white rounded-xl shadow p-4 mb-3">
+    <summary class="font-semibold cursor-pointer">Da li svaka crkva ima manastir?</summary>
+    <p class="mt-2 text-gray-700">Ne. Parohijske crkve služe vernicima u mestu, dok manastiri okupljaju monašku zajednicu i imaju poseban tipik.</p>
+  </details>
+
+  <details class="bg-white rounded-xl shadow p-4 mb-3">
+    <summary class="font-semibold cursor-pointer">Može li monah postati sveštenik?</summary>
+    <p class="mt-2 text-gray-700">Da, tada postaje sveštenomonk – zadržava monaški zavet, ali obavlja i svešteničke službe.</p>
+  </details>
+
+  <details class="bg-white rounded-xl shadow p-4 mb-3">
+    <summary class="font-semibold cursor-pointer">Zašto su manastiri važni u istoriji?</summary>
+    <p class="mt-2 text-gray-700">Manastiri su vekovima bili centri duhovnosti, kulture i pismenosti – čuvali su rukopise, freske i tradiciju.</p>
+  </details>
+</section>
+
+<!-- Kontakt forma (bez PHP backenda). Ako želiš slanje, zameni action Formspree-om -->
+<section class="mt-10 bg-white rounded-xl shadow p-6">
+  <h2 class="text-xl font-bold accent-text mb-3">Postavite pitanje ili sugestiju</h2>
+  <form action="https://formspree.io/f/your-id" method="post" class="space-y-4">
+    <input type="text" name="name" placeholder="Vaše ime" class="w-full border rounded px-3 py-2" />
+    <input type="email" name="email" placeholder="Vaš email (opciono)" class="w-full border rounded px-3 py-2" />
+    <textarea name="message" rows="4" placeholder="Vaše pitanje ili sugestija..." class="w-full border rounded px-3 py-2"></textarea>
+    <button type="submit" class="accent-bg text-white px-4 py-2 rounded hover:opacity-90">Pošalji</button>
+  </form>
+</section>
+
+<section class="mt-10 text-center">
+  <a href="#/manastiri" class="inline-block accent-bg text-white px-6 py-3 rounded-lg hover:opacity-90">
+    Pogledaj listu manastira →
+  </a>
+</section>
+
+<script>
+  document.getElementById('btnShowCompare')?.addEventListener('click', () => {
+    document.getElementById('compareBox')?.classList.toggle('hidden');
+  });
+</script>

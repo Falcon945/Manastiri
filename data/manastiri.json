@@ -1,0 +1,70 @@
+[
+    { "slug":"studenica","naziv":"Studenica","mesto":"Kraljevo","region":"Raška","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina Stefana Nemanje, jedan od najznačajnijih manastira.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"zica","naziv":"Žiča","mesto":"Kraljevo","region":"Raška","status":"aktivan","ikon":"","hero":"","opis":"Sedište prve srpske arhiepiskopije i mesto krunisanja kraljeva.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"manasija","naziv":"Manasija","mesto":"Despotovac","region":"Pomoravlje","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina despota Stefana Lazarevića; tvrđava i Resavska škola.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"ravanica-cuprija","naziv":"Ravanica (Ćuprija)","mesto":"Ćuprija","region":"Pomoravlje","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina kneza Lazara; duhovno središte Moravske Srbije.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"ljubostinja","naziv":"Ljubostinja","mesto":"Trstenik","region":"Šumadija","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina kraljice Jelene, bogat ikonostas, važan spomenik moravske škole.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"kalenic","naziv":"Kalenić","mesto":"Gornji Milanovac","region":"Šumadija","status":"aktivan","ikon":"","hero":"","opis":"Manastir moravske građe iz perioda Despotovine; arhitektonska vrednost.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"gradac","naziv":"Gradac","mesto":"Raška","region":"Raška","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina Stefana Milutina; rasko-moravski stil.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"pustinja","naziv":"Pustinja","mesto":"Valjevo","region":"Zapadna Srbija","status":"aktivan","ikon":"","hero":"","opis":"Skroviti manastir 17. veka, obnova, život monahinja.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"celije","naziv":"Ćelije","mesto":"Valjevo","region":"Zapadna Srbija","status":"aktivan","ikon":"","hero":"","opis":"Poznat po svetom Avi Justinu; ženskа obitelj; poznato duhovno središte.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"jovanja","naziv":"Jovanja","mesto":"Valjevo","region":"Zapadna Srbija","status":"aktivan","ikon":"","hero":"","opis":"Muški manastir iz 15. veka, živopis u savremenoj obnovi.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"mileseva","naziv":"Mileševa","mesto":"Prijepolje","region":"Jugozapadna Srbija","status":"aktivan","ikon":"","hero":"","opis":"Poznata po fresci „Beli Anđeo“; važan kulturni centar.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"sopocani","naziv":"Sopoćani","mesto":"Novi Pazar","region":"Sandžak","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina kralja Uroša I, frescojs, UNESCO.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"djurdjevi-stupovi","naziv":"Đurđevi Stupovi","mesto":"Novi Pazar","region":"Sandžak","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina Stefana Nemanje; raško-moravski stil.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"banjsko","naziv":"Banjska","mesto":"Zvečan","region":"Kosovo (izostaviti)","status":"srusen","ikon":"","hero":"","opis":"Zadužbina Milutina (Kosovo) – izostavljeno.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"decani","naziv":"Visoki Dečani","mesto":"Dečani","region":"Kosovo (izostaviti)","status":"srusen","ikon":"","hero":"","opis":"UNESCO – izostavljen.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"pecka-patrijarsija","naziv":"Pećka Patrijaršija","mesto":"Peć","region":"Kosovo (izostaviti)","status":"srusen","ikon":"","hero":"","opis":"Izostavljen.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"krusedol","naziv":"Krušedol","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina Brankovića; nekropola znamenitih ličnosti.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"novo-hopovo","naziv":"Novo Hopovo","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Fruškogorska arhitektura i vredan ikonostas.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"staro-hopovo","naziv":"Staro Hopovo","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Crkva Sv. Nikole u šumi.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"grgeteg","naziv":"Grgeteg","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Obnovljan kroz vekove, vezan za Brankoviće.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"jazak","naziv":"Jazak","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Poznat po moštima cara Uroša.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"beocin","naziv":"Beočin","mesto":"Beočin","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Barokni kompleks sa ikonostasom.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"rakovac","naziv":"Rakovac","mesto":"Beočin","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Skriven u šumi; obnavljan.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"ravanica-vrdnik","naziv":"Ravanica (Vrdnik)","mesto":"Vrdnik","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Vrdnička Ravanica; tradicija kneza Lazara.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"velika-remeta","naziv":"Velika Remeta","mesto":"Velika Remeta","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Zadužbina Stefana Dragutina; zaštićeno kulturnom dobrom.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"mala-remeta","naziv":"Mala Remeta","mesto":"Irig","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Mala, tiha monaška zajednica.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"kuvezdin","naziv":"Kuveždin","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Obnovljen; lep ikonostas.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"sisatovac","naziv":"Šišatovac","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Poznat po freskama.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"petkovica","naziv":"Petkovica","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Posvećena Sv. Petki.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"privina-glava","naziv":"Privina Glava","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Jedan od većih kompleksa.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"divsa","naziv":"Divša","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Manastir skrajnut, mir.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"djipsa","naziv":"Đipša","mesto":"Šid","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Poznat i kao Sv. Stefan.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"besenovo","naziv":"Bešenovo","mesto":"Bešenovački Prnjavor","region":"Fruška gora","status":"aktivan","ikon":"","hero":"","opis":"Obnovljen manastir, zadužbina kralja Dragutina.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"fenek","naziv":"Fenek","mesto":"Jakovo","region":"Srem","status":"aktivan","ikon":"","hero":"","opis":"U ravnici, ali vezan za fruškogorsku grupu.","sadrzaj":"","official_url":"","galerija":[] },
+  
+    { "slug":"bavaniste","naziv":"Bavanište","mesto":"Bavanište","region":"Banat","status":"aktivan","ikon":"","hero":"","opis":"15.-vekovni manastir; rušen i obnovljen 1856–58.","sadrzaj":"","official_url":"","galerija":[] },
+  
+  
+    { "slug":"tumane","naziv":"Tumane","mesto":"Golubac","region":"Braničevo","status":"aktivan","ikon":"","hero":"","opis":"Savremeno obnovljen; poznat po velikoj poseti vernika.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"nimnik","naziv":"Nimnik","mesto":"Kučevo","region":"Braničevo","status":"aktivan","ikon":"","hero":"","opis":"Poznat po čudotvornoj ikoni.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"zaova","naziv":"Zaova","mesto":"Požarevac","region":"Braničevo","status":"aktivan","ikon":"","hero":"","opis":"Povezan s narodnim predanjem; pokloničko mesto.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"rukumija","naziv":"Rukumija","mesto":"Kostolac","region":"Braničevo","status":"aktivan","ikon":"","hero":"","opis":"Duhovni centar kod Požarevca.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"gornjak","naziv":"Gornjak","mesto":"Petrovac na Mlavi","region":"Braničevo","status":"aktivan","ikon":"","hero":"","opis":"Klisura Mlave; zadužbina kneza Lazara.","sadrzaj":"","official_url":"","galerija":[] },
+  
+  
+    { "slug":"ajdanovac","naziv":"Ajdanovac","mesto":"Prokuplje","region":"Nišava","status":"aktivan","ikon":"","hero":"","opis":"Manastir iz 1485. u Eparhiji Niš.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"divljana","naziv":"Divljana","mesto":"Horizont","region":"Nišava","status":"aktivan","ikon":"","hero":"","opis":"Manastir Sv. Dimitrija iz 1395.","sadrzaj":"","official_url":"","galerija":[] },
+    { "slug":"vavedenje-beograd","naziv":"Vavedenje (Senjak)","mesto":"Beograd","region":"Beograd","status":"aktivan","ikon":"","hero":"","opis":"Sredinom 20. veka ugradjen urbani manastir u Beogradu.","sadrzaj":"","official_url":"","galerija":[] },
+  
+  
+    { "slug":"kozjak","naziv":"Kozjak","mesto":"Fruška Gora","region":"Srbija","status":"srusen","ikon":"","hero":"","opis":"Porušen manastir; nema obnove.","sadrzaj":"","official_url":"","galerija":[] }
+  ]
+  
