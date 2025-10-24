@@ -2,10 +2,26 @@
 const $ = s => document.querySelector(s);
 const app = $("#app");
 
+function updateScrollBtnColor(theme) {
+  const btn = document.getElementById("scrollTopBtn");
+  if (!btn) return;
+
+  let color;
+  switch (theme) {
+    case "gold":  color = "#d4af37"; break; // zlatna
+    case "bordo": color = "#800020"; break; // bordo
+    case "green": color = "#2f6e2f"; break; // tamnozelena
+    default:      color = "#444"; break;    // siva kao fallback
+  }
+
+  btn.style.background = color;
+  btn.style.color = "#fff";
+}
 /* ============ Tema (umesto PHP $theme) ============ */
 function setTheme(theme = "green") {
   const allowed = ["green", "gold", "bordo"];
   document.body.dataset.theme = allowed.includes(theme) ? theme : "green";
+   updateScrollBtnColor(theme);
 }
 
 /* ============ Header/Footer partials ============ */
@@ -125,15 +141,24 @@ async function initManastiriPage(){
   }
 
   function apply() {
-    const needle = (q.value||"").trim().toLowerCase();
-    filtered = all.filter(m => {
-      const hay = `${m.naziv||""} ${m.mesto||""} ${m.region||""}`.toLowerCase();
-      return !needle || hay.includes(needle);
-    });
-    resetBtn?.classList.toggle("hidden", needle === "");
-    page = 1;
-    render();
-  }
+  const needle = (q.value || "").trim().toLowerCase();
+
+  filtered = all.filter(m => {
+    const hay = `
+      ${m.naziv || ""} 
+      ${m.mesto || ""} 
+      ${m.region || ""} 
+      ${m.opis || ""} 
+      ${m.status || ""}
+    `.toLowerCase();
+
+    return !needle || hay.includes(needle);
+  });
+
+  resetBtn?.classList.toggle("hidden", needle === "");
+  page = 1;
+  render();
+}
 
   function render() {
     const total  = filtered.length;

@@ -7,7 +7,7 @@
 
   <!-- Tailwind CDN (kao u PHP headeru) -->
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <link rel="stylesheet" href="./style.css">
   <style>
     :root{
       --bg-paper:#F8F5E7; /* svetla pozadina */
@@ -33,6 +33,10 @@
 <body class="paper-bg text-gray-800" data-theme="green">
   <div id="site-header"></div>
   <main id="app"></main>
+  <!-- Strelica za povratak na vrh -->
+  <button id="scrollTopBtn" title="Nazad na vrh">↑</button>
+  <script src="./assets/script.js"></script>
+
   <div id="site-footer"></div>
 
   <script type="module" src="app.js"></script>
