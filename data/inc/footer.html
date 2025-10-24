@@ -1,0 +1,17 @@
+<footer class="bg-gray-900 text-gray-300 w-full border-t border-white/10" role="contentinfo">
+  <div class="mx-auto max-w-6xl px-4 py-6 text-sm grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+    <div class="flex items-center justify-center md:justify-start gap-3">
+      <img src="pictures/watermark.png" alt="Pravoslavni Manastiri – logotip"
+           class="h-8 md:h-10 w-auto opacity-70 select-none pointer-events-none" loading="lazy"/>
+      <time id="year" class="text-gray-400"></time>
+    </div>
+    <p class="text-center">© Pravoslavni Manastiri</p>
+    <nav class="flex items-center justify-center md:justify-end gap-6">
+      <a href="#/izvori" class="hover:text-white">Izvori i reference</a>
+      <a href="#/manastiri" class="hover:text-white">Manastiri</a>
+    </nav>
+  </div>
+</footer>
+<script>
+  const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+</script>
