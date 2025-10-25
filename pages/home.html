@@ -1,158 +1,196 @@
-<!-- pages/home.html -->
-<section class="mt-12">
-  <h2 class="text-2xl font-bold accent-text mb-3">Istorijat hrišćanstva – sažeto</h2>
-  <div class="bg-white rounded-xl shadow p-6 leading-relaxed">
-    <p>
-      Hrišćanstvo nastaje u 1. veku u Judeji, širi se rimskim putevima i zajednicama dijaspore. Rani sabori
-      (Nikeja 325, Carigrad 381, Efes 431, Halkedon 451) formulišu ključna učenja i kanone. Milanskim ediktom (313)
-      prestaju progoni, a kasnije hrišćanstvo postaje dominantna religija u carstvu.
-    </p>
-  </div>
-</section>
-
-<section class="mt-12">
-  <div class="flex items-end justify-between gap-3">
-    <h2 class="text-2xl font-bold accent-text">Grane hrišćanstva</h2>
-    <div class="text-sm">
-      <button id="btnShowCompare" class="accent-text hover:underline">Prikaži poređenje</button>
+<!-- HERO / UVOD -->
+<section class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+  <div class="bg-white rounded-2xl shadow overflow-hidden flex flex-col md:flex-row">
+    <!-- Slika hero -->
+    <div class="md:w-1/2 h-48 md:h-auto">
+      <img src="pictures/manastir.jpg"  alt="Manastir"  class="w-full h-full object-cover">
     </div>
-  </div>
 
-  <div class="grid md:grid-cols-2 gap-4 mt-4">
-    <article class="bg-white rounded-xl shadow p-5">
-      <h3 class="font-semibold text-lg">Pravoslavlje</h3>
-      <p class="text-gray-700 mt-1">
-        Istok hrišćanstva, zasniva se na kontinuitetu rane Crkve, liturgiji i sabornosti (sinodalnosti).
-        Autokefalne crkve (npr. Carigradska, Srpska) imaju sopstvenu upravu.
-      </p>
-    </article>
-    <article class="bg-white rounded-xl shadow p-5">
-      <h3 class="font-semibold text-lg">Katoličanstvo</h3>
-      <p class="text-gray-700 mt-1">
-        Zapadna tradicija sa centralnom ulogom Rimske Crkve. Papski primat i jedinstvena crkvena disciplina,
-        snažan naglasak na univerzalnosti i misionarstvu.
-      </p>
-    </article>
-  </div>
-
-  <div id="compareBox" class="mt-4 hidden">
-    <div class="bg-white rounded-xl shadow overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead class="accent-bg text-white">
-          <tr>
-            <th class="text-left px-4 py-3">Tema</th>
-            <th class="text-left px-4 py-3">Pravoslavlje</th>
-            <th class="text-left px-4 py-3">Katoličanstvo</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y">
-          <tr>
-            <td class="px-4 py-3 font-medium">Uprava</td>
-            <td class="px-4 py-3">Sabornost autokefalnih crkava (sinodalnost).</td>
-            <td class="px-4 py-3">Papski primat i jedinstvena hijerarhija.</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 font-medium">Liturgija</td>
-            <td class="px-4 py-3">Božanstvena Liturgija (npr. Jovana Zlatoustog), naglasak na ikonama.</td>
-            <td class="px-4 py-3">Misa (rimskog obreda), razvijen zapadni liturgijski korpus.</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 font-medium">Teološki akcenti</td>
-            <td class="px-4 py-3">Misterija, predanje Otaca, deifikacija (theosis).</td>
-            <td class="px-4 py-3">Dogmatske definicije, učiteljstvo (magisterij), skolastika.</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 font-medium">Jezik i praksa</td>
-            <td class="px-4 py-3">Više liturgijskih jezika; post, praznični ciklus.</td>
-            <td class="px-4 py-3">Univerzalni standard; različiti redovi i pobožnosti.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="text-xs text-gray-500 mt-2">
-      Napomena: tabela je orijentaciona – istorijski i lokalni običaji mogu da se razlikuju.
-    </p>
-  </div>
-</section>
-
-<section class="mt-12">
-  <h2 class="text-2xl font-bold accent-text mb-3">Manastir i crkva – razlika</h2>
-  <div class="bg-white rounded-xl shadow p-6 grid md:grid-cols-2 gap-6">
-    <div>
-      <h3 class="font-semibold">Crkva (parohijska)</h3>
-      <ul class="list-disc pl-5 mt-2 text-gray-700 space-y-1">
-        <li>Parohijska zajednica vernika, redovna bogosluženja.</li>
-        <li>Upravljaju parosi/sveštenici; fokus na pastoralnom radu.</li>
-      </ul>
-    </div>
-    <div>
-      <h3 class="font-semibold">Manastir</h3>
-      <ul class="list-disc pl-5 mt-2 text-gray-700 space-y-1">
-        <li>Monaška zajednica (monasi/monahinje) pod tipikom i nastojateljem.</li>
-        <li>Život posvećen molitvi, poslušanju i zajedničkom pravilima.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="mt-12">
-  <h2 class="text-2xl font-bold accent-text mb-3">Sveštenik i monah – uloge</h2>
-  <div class="bg-white rounded-xl shadow p-6">
-    <div class="grid md:grid-cols-2 gap-6">
-      <div>
-        <h3 class="font-semibold">Sveštenik (paroh)</h3>
-        <p class="text-gray-700 mt-1">
-          Rukopoložen za službu u parohiji: služi Liturgiju i tajne, propoveda, brine o vernicima i parohijskoj zajednici.
-        </p>
+    <!-- Tekst hero -->
+    <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+      <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">
+        Dobrodošli
       </div>
-      <div>
-        <h3 class="font-semibold">Monah</h3>
-        <p class="text-gray-700 mt-1">
-          Daje zavete (čistote, siromaštva, poslušnosti), živi po tipiku manastira; može biti i sveštenomonk (ako je rukopoložen).
+
+      <h1 class="text-2xl md:text-3xl font-bold accent-text leading-tight mb-4">
+        Dobrodošli u svet manastira Srbije.
+      </h1>
+
+      <p class="text-gray-700 leading-relaxed text-[15px] md:text-base mb-3">
+        Ova stranica nastala je iz želje da svako, bilo gde da se nalazi, može da upozna duhovne i kulturne bisere našeg naroda.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed text-[15px] md:text-base mb-3">
+        Manastiri nisu samo kamene zadužbine, već živi svedoci vekova – čuvari vere, umetnosti i identiteta.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed text-[15px] md:text-base mb-3">
+        Ovde možete saznati više o svakom manastiru, njegovoj istoriji, arhitekturi i značaju, ali i o tišini i miru koji svako od njih nosi.
+      </p>
+
+      <p class="text-gray-500 text-sm italic">
+        Ipak, ništa ne može zameniti ličnu posetu – zato svaku priču završavamo pozivom da sami otkrijete ta sveta mesta i doživite njihovu tišinu, zvuk zvona i miris tamjana.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRETRAGA / POZIV NA ISTRAŽIVANJE -->
+<section class="max-w-5xl mx-auto px-4 py-6 md:py-8 bg-white rounded-2xl shadow">
+  <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-2 flex items-baseline gap-2">
+    <span class="accent-text font-bold">Pronađi manastir</span>
+    <span class="text-[12px] text-gray-400 font-normal">po nazivu, mestu, regionu...</span>
+  </h2>
+
+  <p class="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-4">
+    Pretraga pokriva naziv manastira, grad / oblast, region, pa čak i kratak opis.
+    Na primer: možeš da uneseš „Fruška Gora“, „Raška“, „Nemanjić“, „Drina“, „Kosovo“...
+  </p>
+
+  <!-- Vizuelni prikaz polja za pretragu (klik vodi na pravu listu) -->
+  <div class="flex flex-col md:flex-row md:items-center gap-3 mb-4">
+    <input 
+      type="text"
+      placeholder="Ukucaj šta te zanima…"
+      class="w-full md:flex-1 border rounded-lg px-4 py-2 text-[15px] outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600"
+      disabled
+    >
+    <a 
+      href="#/manastiri"
+      class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-white accent-bg font-medium text-[14px] hover:opacity-90 transition">
+      Otvori listu manastira
+    </a>
+  </div>
+
+  <!-- Brzi filteri regiona -->
+  <div class="flex flex-wrap gap-2 text-[13px]">
+    <a href="#/manastiri" class="px-3 py-1.5 rounded-full border accent-border accent-text hover:accent-bg hover:text-white transition">Fruška Gora</a>
+    <a href="#/manastiri" class="px-3 py-1.5 rounded-full border accent-border accent-text hover:accent-bg hover:text-white transition">Raška</a>
+    <a href="#/manastiri" class="px-3 py-1.5 rounded-full border accent-border accent-text hover:accent-bg hover:text-white transition">Istočna Srbija</a>
+    <a href="#/manastiri" class="px-3 py-1.5 rounded-full border accent-border accent-text hover:accent-bg hover:text-white transition">Drina / Zapad</a>
+    <a href="#/manastiri" class="px-3 py-1.5 rounded-full border accent-border accent-text hover:accent-bg hover:text-white transition">Kosovo i Metohija</a>
+  </div>
+
+  <p class="text-[12px] text-gray-400 mt-4">
+    (Na listi manastira pretraga već radi uživo dok kucaš.)
+  </p>
+</section>
+
+
+<!-- KRATKA ISTORIJA (TEASER BLOK) -->
+<section class="max-w-5xl mx-auto px-4 py-6 md:py-8">
+  <div class="bg-white rounded-2xl shadow p-6 md:p-8">
+    <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">
+      Kontekst
+    </div>
+
+    <h2 class="text-xl md:text-2xl font-bold accent-text mb-4">
+      Duhovni koreni manastira
+    </h2>
+
+    <p class="text-gray-700 leading-relaxed text-[15px] md:text-base mb-4">
+      Hrišćanstvo je na ovim prostorima prisutno vekovima, još od vremena Rimskog carstva. 
+      Tokom srednjeg veka postaje stub duhovnosti i identiteta, a upravo iz tog perioda nastaju mnogi naši manastiri – kao mesta molitve, ali i kao centri pisma, umetnosti i zaštite naroda.
+    </p>
+
+    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+      Ako želiš da razumeš pozadinu pravoslavlja ovde, kako je nastajala monaška tradicija i zašto su manastiri više od “lepih zgrada” – pogledaj detaljniji prikaz.
+    </p>
+
+    <a 
+      href="#/Istorijat"
+      class="inline-flex items-center px-4 py-2 rounded-lg border accent-border accent-text text-[14px] font-medium hover:accent-bg hover:text-white transition"
+    >
+      Pročitaj više →
+    </a>
+  </div>
+</section>
+
+
+<!-- ISTAKNUTI MANASTIRI -->
+<section class="max-w-5xl mx-auto px-4 pb-12 md:pb-16 pt-10">
+  <div class="flex items-baseline justify-between mb-4">
+    <h2 class="text-xl md:text-2xl font-bold accent-text">
+      Izdvojeno
+    </h2>
+    <a href="#/manastiri" class="text-[13px] text-gray-500 hover:underline">
+      Pogledaj sve →
+    </a>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <!-- Kartica 1 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <div class="h-32 w-full bg-gray-200">
+        <img src="pictures/hero-fallback.jpg" class="w-full h-full object-cover" alt="Manastir Studenica">
+      </div>
+      <div class="p-4">
+        <div class="font-semibold text-lg">Studenica</div>
+        <div class="text-sm text-gray-500 mb-2">Kraljevo • Raška</div>
+        <p class="text-[14px] text-gray-700 leading-relaxed">
+          Zadužbina Stefana Nemanje, poznata po belom mermeru i freskama iz XII veka.
         </p>
+        <a href="#/manastir/studenica" class="block mt-3 text-[13px] accent-text hover:underline font-medium">
+          Detaljnije →
+        </a>
+      </div>
+    </div>
+
+    <!-- Kartica 2 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <div class="h-32 w-full bg-gray-200">
+        <img src="pictures/hero-fallback.jpg" class="w-full h-full object-cover" alt="Manastir Žiča">
+      </div>
+      <div class="p-4">
+        <div class="font-semibold text-lg">Žiča</div>
+        <div class="text-sm text-gray-500 mb-2">Kraljevo • Raška</div>
+        <p class="text:[14px] text-gray-700 leading-relaxed">
+          Prva srpska arhiepiskopija i mesto krunisanja Nemanjića. Poznata po crvenim zidovima.
+        </p>
+        <a href="#/manastir/zica" class="block mt-3 text-[13px] accent-text hover:underline font-medium">
+          Detaljnije →
+        </a>
+      </div>
+    </div>
+
+    <!-- Kartica 3 -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <div class="h-32 w-full bg-gray-200">
+        <img src="pictures/hero-fallback.jpg" class="w-full h-full object-cover" alt="Manastiri Fruške gore">
+      </div>
+      <div class="p-4">
+        <div class="font-semibold text-lg">Fruška Gora</div>
+        <div class="text-sm text-gray-500 mb-2">Vojvodina • Srem</div>
+        <p class="text-[14px] text-gray-700 leading-relaxed">
+          Planina sa velikom gustinom manastira — duhovno srce Srema, često zvana „srpski Atos“.
+        </p>
+        <a href="#/manastiri" class="block mt-3 text-[13px] accent-text hover:underline font-medium">
+          Prikaži manastire →
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="mt-12">
-  <h2 class="text-2xl font-bold accent-text mb-4">Interesantnosti i pitanja</h2>
 
-  <details class="bg-white rounded-xl shadow p-4 mb-3">
-    <summary class="font-semibold cursor-pointer">Da li svaka crkva ima manastir?</summary>
-    <p class="mt-2 text-gray-700">Ne. Parohijske crkve služe vernicima u mestu, dok manastiri okupljaju monašku zajednicu i imaju poseban tipik.</p>
-  </details>
 
-  <details class="bg-white rounded-xl shadow p-4 mb-3">
-    <summary class="font-semibold cursor-pointer">Može li monah postati sveštenik?</summary>
-    <p class="mt-2 text-gray-700">Da, tada postaje sveštenomonk – zadržava monaški zavet, ali obavlja i svešteničke službe.</p>
-  </details>
+<!-- NAJAVA MAPE -->
+<section class="max-w-5xl mx-auto px-4 pb-24">
+  <div class="bg-white rounded-2xl shadow p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="md:max-w-xl">
+      <h2 class="text-lg md:text-xl font-semibold accent-text mb-2">
+        Manastiri na mapi
+      </h2>
+      <p class="text-gray-700 text-[14px] leading-relaxed">
+        Uskoro dodajemo interaktivnu mapu sa lokacijama manastira po regionima Srbije.
+        Moći ćeš brzo da vidiš koje svetinje su ti najbliže.
+      </p>
+    </div>
 
-  <details class="bg-white rounded-xl shadow p-4 mb-3">
-    <summary class="font-semibold cursor-pointer">Zašto su manastiri važni u istoriji?</summary>
-    <p class="mt-2 text-gray-700">Manastiri su vekovima bili centri duhovnosti, kulture i pismenosti – čuvali su rukopise, freske i tradiciju.</p>
-  </details>
+    <a 
+      href="#/manastiri"
+      class="inline-flex items-center justify-center px-4 py-2 rounded-lg border accent-border accent-text text-[14px] font-medium hover:accent-bg hover:text-white transition w-full md:w-auto text-center">
+      Pregledaj manastire →
+    </a>
+  </div>
 </section>
-
-<!-- Kontakt forma (bez PHP backenda). Ako želiš slanje, zameni action Formspree-om -->
-<section class="mt-10 bg-white rounded-xl shadow p-6">
-  <h2 class="text-xl font-bold accent-text mb-3">Postavite pitanje ili sugestiju</h2>
-  <form action="https://formspree.io/f/your-id" method="post" class="space-y-4">
-    <input type="text" name="name" placeholder="Vaše ime" class="w-full border rounded px-3 py-2" />
-    <input type="email" name="email" placeholder="Vaš email (opciono)" class="w-full border rounded px-3 py-2" />
-    <textarea name="message" rows="4" placeholder="Vaše pitanje ili sugestija..." class="w-full border rounded px-3 py-2"></textarea>
-    <button type="submit" class="accent-bg text-white px-4 py-2 rounded hover:opacity-90">Pošalji</button>
-  </form>
-</section>
-
-<section class="mt-10 text-center">
-  <a href="#/manastiri" class="inline-block accent-bg text-white px-6 py-3 rounded-lg hover:opacity-90">
-    Pogledaj listu manastira →
-  </a>
-</section>
-
-<script>
-  document.getElementById('btnShowCompare')?.addEventListener('click', () => {
-    document.getElementById('compareBox')?.classList.toggle('hidden');
-  });
-</script>

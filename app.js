@@ -39,6 +39,7 @@ const routes = {
   "": "pages/home.html",
   "manastiri": "pages/manastiri.html",
   "izvori": "pages/izvori.html",
+  "Istorijat": "pages/istorijat.html",
 };
 function parseHash(){ return location.hash.replace(/^#\//,"").split("/").filter(Boolean); }
 
@@ -254,6 +255,7 @@ async function route(){
     // tema po ruti
     if (parts[0] === "manastiri") setTheme("gold");
     else if (parts[0] === "izvori") setTheme("bordo");
+    else if (parts[0] === "Istorijat") setTheme("bordo"); // ili napravi novu nijansu kasnije
     else setTheme("green");
 
     // učitaj HTML
