@@ -189,3 +189,80 @@ body[data-theme="bordo"] { --accent: #800020; }  /* Izvori, Istorija */
   background-color: var(--accent) !important;
   color: #fff !important;
 }
+/* ============================================================
+   HEADER KONTROLE (tema/jezik dugmad) – fallback stilovi
+   ============================================================ */
+
+/* dugme za izbor teme (desktop i mobilni), ako Tailwind ne upali iz nekog razloga */
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.2;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #f8f8f8;
+  padding: 6px 10px;
+}
+
+/* dropdown liste za temu (desktop i mobilni) kada JS otvori */
+.theme-dropdown {
+  display: none;              /* JS menja ovo u flex */
+  flex-direction: column;
+  background-color: #0f172a;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  min-width: 110px;
+  padding: 4px 0;
+  position: absolute;
+  z-index: 9999;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.8);
+}
+
+.theme-dropdown button {
+  background: transparent;
+  border: 0;
+  color: #f8f8f8;
+  text-align: left;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.theme-dropdown button:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+/* mobilni panel koji se otvara ispod headera */
+#mobileMenu {
+  background-color: #0f172a;           /* isti kao header traka */
+  color: #e5e7eb;                      /* tailwind text-gray-200 */
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+/* linkovi unutra mobilnog menija */
+#mobileMenu a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+#mobileMenu a:hover {
+  color: #fff;
+}
+
+/* male sekcije (JEZIK / IZGLED labelice u mobilnom) */
+#mobileMenu .section-label {
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.5);
+}

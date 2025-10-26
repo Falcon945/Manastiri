@@ -1,13 +1,29 @@
 <header class="dark-bg text-gray-200">
-  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="#/" class="font-bold text-xl">Pravoslavni Manastiri</a>
-    <nav class="flex gap-6">
+  <!-- WRAPPER -->
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between md:justify-normal">
+
+    <!-- ============ LEVA ZONA (logo / brand) ============ -->
+    <a href="#/" class="font-bold text-xl md:text-lg lg:text-xl text-white whitespace-nowrap">
+      Pravoslavni Manastiri
+    </a>
+
+    <!-- ============ DESKTOP NAV (linkovi u sredini) ============ -->
+    <nav
+      class="hidden md:flex items-center gap-6 mx-auto text-sm"
+      id="desktop-main-nav"
+    >
       <a class="hover:text-white" href="#/">Početna</a>
       <a class="hover:text-white" href="#/manastiri">Manastiri</a>
       <a class="hover:text-white" href="#/Istorijat">Istorija</a>
       <a class="hover:text-white" href="#/izvori">Izvori</a>
-      <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
-       <!-- JEZIČKI DROPDOWN -->
+    </nav>
+
+    <!-- ============ DESKTOP DESNA ZONA (jezik + tema) ============ -->
+    <div
+      class="hidden md:flex items-center gap-4 text-xs text-gray-200"
+      id="desktop-controls"
+    >
+      <!-- JEZIK DROPDOWN -->
       <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
         <button
           id="lang-dropdown-button"
@@ -26,7 +42,6 @@
           id="lang-dropdown-menu"
           class="hidden absolute right-0 mt-2 w-36 max-h-64 overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg text-xs text-gray-700 z-50"
         >
-          <!-- redosled koji si tražio -->
           <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
                   data-lang="sr" data-label="SR">Српски</button>
 
@@ -68,21 +83,144 @@
         </div>
       </div>
 
-      <!-- Google translate mount point, sakriven -->
-      <div id="google_translate_element" class="hidden"></div>
-      <div class="theme-switcher">
-        <button id="themeBtn" class="theme-btn">
-          Izgled: <span id="currentThemeLabel">custom</span> ⌄
+      <!-- THEME SWITCHER (PALETA custom/light/dark) -->
+      <div class="relative theme-switcher text-gray-200">
+        <button id="themeBtn" class="theme-btn flex items-center gap-1 text-xs text-gray-200 bg-transparent border border-white/30 rounded-md px-3 py-1.5 hover:bg-white/10">
+          <span class="opacity-70">Izgled:</span>
+          <span id="currentThemeLabel" class="font-medium">custom</span>
+          <span>⌄</span>
         </button>
 
-        <div id="themeDropdown" class="theme-dropdown">
-          <button data-palette="custom">Custom</button>
-          <button data-palette="light">Light</button>
-          <button data-palette="dark">Dark</button>
+        <div
+          id="themeDropdown"
+          class="theme-dropdown absolute right-0 mt-2 hidden flex-col gap-1 min-w-[110px] rounded-md border border-white/20 bg-gray-900 text-gray-100 text-xs shadow-xl z-50"
+        >
+          <button data-palette="custom" class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Custom</button>
+          <button data-palette="light"  class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Light</button>
+          <button data-palette="dark"   class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Dark</button>
         </div>
       </div>
 
+      <!-- Google translate mount point (ne diraj, samo mora da postoji u DOM-u) -->
+      <div id="google_translate_element" class="hidden"></div>
+    </div>
 
-    </nav>
+    <!-- ============ MOBILNI DESNI DEO (burger dugme) ============ -->
+    <button
+      id="mobileMenuToggle"
+      class="md:hidden text-gray-200 border border-white/30 rounded-md px-2 py-1 text-sm flex items-center gap-2"
+      type="button"
+      aria-label="Meni"
+    >
+      <span class="block w-4 h-[2px] bg-gray-200"></span>
+      <span class="block w-4 h-[2px] bg-gray-200"></span>
+      <span class="block w-4 h-[2px] bg-gray-200"></span>
+    </button>
+  </div>
+
+  <!-- ============ MOBILNI PANEL (dropdown meni preko celog width-a) ============ -->
+  <div
+    id="mobileMenu"
+    class="md:hidden hidden border-t border-white/10 bg-[#0f172a] text-gray-200"
+  >
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4 text-sm">
+
+      <!-- Linkovi -->
+      <nav class="flex flex-col gap-2">
+        <a class="hover:text-white" href="#/">Početna</a>
+        <a class="hover:text-white" href="#/manastiri">Manastiri</a>
+        <a class="hover:text-white" href="#/Istorijat">Istorija</a>
+        <a class="hover:text-white" href="#/izvori">Izvori</a>
+      </nav>
+
+      <hr class="border-white/20">
+
+      <!-- Jezik -->
+      <div class="flex flex-col gap-2">
+        <div class="text-[11px] uppercase tracking-wide text-gray-400">Jezik</div>
+
+        <div class="relative inline-block text-left w-fit" id="lang-dropdown-wrapper-mobile">
+          <button
+            id="lang-dropdown-button-mobile"
+            class="flex items-center gap-2 px-3 py-1.5 text-xs font-medium border border-gray-300 rounded-md bg-white hover:bg-gray-100 text-gray-700 shadow-sm"
+            type="button"
+          >
+            <span id="lang-current-label-mobile">SR</span>
+            <svg class="w-3 h-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.173l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <div
+            id="lang-dropdown-menu-mobile"
+            class="hidden absolute left-0 mt-2 w-36 max-h-64 overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg text-xs text-gray-700 z-50"
+          >
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="sr" data-label="SR">Српски</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="en" data-label="EN">English</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="ru" data-label="RU">Русский</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="el" data-label="EL">Ελληνικά</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="ro" data-label="RO">Română</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="bs" data-label="BS">Bosanski</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="hr" data-label="HR">Hrvatski</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="sl" data-label="SL">Slovenski</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="uk" data-label="UK">Українська</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="bg" data-label="BG">Български</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="mk" data-label="MK">Македонски</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="ka" data-label="KA">ქართული</button>
+
+            <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                    data-lang="be" data-label="BE">Беларуская</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tema / Paleta -->
+      <div class="flex flex-col gap-2">
+        <div class="text-[11px] uppercase tracking-wide text-gray-400">Izgled</div>
+
+        <div class="relative w-fit theme-switcher text-gray-200">
+          <button id="themeBtnMobile" class="theme-btn flex items-center gap-1 text-xs text-gray-200 bg-transparent border border-white/30 rounded-md px-3 py-1.5 hover:bg-white/10">
+            <span class="opacity-70">Tema:</span>
+            <span id="currentThemeLabelMobile" class="font-medium">custom</span>
+            <span>⌄</span>
+          </button>
+
+          <div
+            id="themeDropdownMobile"
+            class="hidden absolute left-0 mt-2 flex-col gap-1 min-w-[110px] rounded-md border border-white/20 bg-gray-900 text-gray-100 text-xs shadow-xl z-50"
+          >
+            <button data-palette="custom" class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Custom</button>
+            <button data-palette="light"  class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Light</button>
+            <button data-palette="dark"   class="w-full text-left px-3 py-2 rounded hover:bg-white/10">Dark</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </header>
