@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sr" data-palette="custom">
+<html lang="sr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,6 +8,24 @@
   <!-- Tailwind CDN (kao u PHP headeru) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'sr',
+        includedLanguages: 'sr,en,ru,el,ro,bs,hr,sl,uk,bg,mk,ka,be',
+        autoDisplay: false
+      },
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script
+  type="text/javascript"
+  src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
   <style>
     :root{
       --bg-paper:#F8F5E7; /* svetla pozadina */
@@ -40,20 +58,5 @@
   <div id="site-footer"></div>
 
   <script type="module" src="app.js"></script>
-  <script>
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {
-        pageLanguage: 'sr',
-        includedLanguages: 'sr,en,ru,el,ro,bs,hr,sl,uk,bg,mk,ka,be',
-        autoDisplay: false
-      },
-      'google_translate_element'
-    );
-  }
-</script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
