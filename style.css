@@ -30,3 +30,162 @@
   border-radius: 8px;
   font-size: 16px;
 }
+/* ============================================================
+   PALETE: LIGHT / CUSTOM / DARK
+   (dodaj ispod svog CSS-a)
+   ============================================================ */
+
+/* LIGHT = klasična bela tema */
+:root[data-palette="light"] {
+  --bg-page: #ffffff;
+  --bg-card: #f9f9f9;
+  --text-main: #1a1a1a;
+  --text-dim: #555555;
+  --border-card: rgba(0,0,0,0.08);
+  --header-bg: rgba(255,255,255,0.9);
+  --header-border: rgba(0,0,0,0.08);
+}
+
+/* CUSTOM = tvoja prepoznatljiva pergament varijanta */
+:root[data-palette="custom"] {
+  --bg-page: #F8F5E7;
+  --bg-card:  #FBF9EE;
+  --text-main: #1a1a1a;
+  --text-dim: #5a5a5a;
+  --border-card: rgba(0,0,0,0.07);
+  --header-bg: #0F172A;
+  --header-border: rgba(255,255,255,0.1);
+}
+
+/* DARK = tamna noćna tema */
+:root[data-palette="dark"] {
+  --bg-page: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --text-main: #eeeeee;
+  --text-dim: #888888;
+  --border-card: rgba(255,255,255,0.1);
+  --header-bg: rgba(10,10,10,0.6);
+  --header-border: rgba(255,255,255,0.12);
+}
+
+/* ============================================================
+   GLOBALNA PRIMENA (ostaje tvoja estetika)
+   ============================================================ */
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  color: var(--text-main);
+  backdrop-filter: blur(12px);
+}
+
+/* Elementi kartica i sekcija */
+.card,
+.section-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  color: var(--text-main);
+}
+
+.card p,
+.section-card p {
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   AKCENT BOJE PO TEMI STRANICE
+   ============================================================ */
+
+body[data-theme="green"] { --accent: #2f6e2f; }  /* Početna */
+body[data-theme="gold"]  { --accent: #d4af37; }  /* Manastiri */
+body[data-theme="bordo"] { --accent: #800020; }  /* Izvori, Istorija */
+
+.accent-text { color: var(--accent); }
+.accent-bg { background-color: var(--accent); color: #fff; }
+.accent-border { border-color: var(--accent); }
+.hover\:accent-bg:hover { background-color: var(--accent); color: #fff; }
+
+/* ============================================================
+   TEMA DUGME DROPDOWN (ako koristiš)
+   ============================================================ */
+#themeDropdown {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 6px;
+  border-radius: 8px;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  min-width: 100px;
+  z-index: 100;
+}
+
+#themeDropdown button {
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-align: left;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#themeDropdown button:hover {
+  background: var(--accent);
+  color: #fff;
+}
+/* ============================================================
+   DARK MODE OVERRIDES za kartice / blokove sadržaja
+   ============================================================ */
+:root[data-palette="dark"] .bg-white.rounded-xl.shadow,
+:root[data-palette="dark"] .bg-white.rounded-2xl.shadow,
+:root[data-palette="dark"] .card,
+:root[data-palette="dark"] .section-card {
+  background-color: #1a1a1a !important;           /* tamna kartica */
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: #eeeeee !important;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.9) !important;
+}
+
+:root[data-palette="dark"] .bg-white.rounded-xl.shadow p,
+:root[data-palette="dark"] .bg-white.rounded-2xl.shadow p,
+:root[data-palette="dark"] .card p,
+:root[data-palette="dark"] .section-card p {
+  color: #bbbbbb !important; /* malo svetlije siv tekst unutra */
+}
+
+/* input polja / dugmad unutar tamne kartice, da ne bodu oči belo */
+:root[data-palette="dark"] input,
+:root[data-palette="dark"] textarea,
+:root[data-palette="dark"] select {
+  background-color: #0f0f0f !important;
+  color: #f0f0f0 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+:root[data-palette="dark"] input::placeholder,
+:root[data-palette="dark"] textarea::placeholder {
+  color: #777 !important;
+}
+
+/* badge-ovi / pilovi (one zelene oblačiće filtera) – ivica i tekst da se vide i u dark */
+:root[data-palette="dark"] .accent-border {
+  border-color: var(--accent) !important;
+}
+:root[data-palette="dark"] .accent-text {
+  color: var(--accent) !important;
+}
+:root[data-palette="dark"] .accent-bg {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}

@@ -6,6 +6,83 @@
       <a class="hover:text-white" href="#/manastiri">Manastiri</a>
       <a class="hover:text-white" href="#/Istorijat">Istorija</a>
       <a class="hover:text-white" href="#/izvori">Izvori</a>
+      <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
+       <!-- JEZIČKI DROPDOWN -->
+      <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
+        <button
+          id="lang-dropdown-button"
+          class="flex items-center gap-2 px-3 py-1.5 text-xs font-medium border border-gray-300 rounded-md bg-white hover:bg-gray-100 text-gray-700 shadow-sm"
+          type="button"
+        >
+          <span id="lang-current-label">SR</span>
+          <svg class="w-3 h-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.173l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <div
+          id="lang-dropdown-menu"
+          class="hidden absolute right-0 mt-2 w-36 max-h-64 overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg text-xs text-gray-700 z-50"
+        >
+          <!-- redosled koji si tražio -->
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="sr" data-label="SR">Српски</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="en" data-label="EN">English</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="ru" data-label="RU">Русский</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="el" data-label="EL">Ελληνικά</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="ro" data-label="RO">Română</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="bs" data-label="BS">Bosanski</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="hr" data-label="HR">Hrvatski</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="sl" data-label="SL">Slovenski</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="uk" data-label="UK">Українська</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="bg" data-label="BG">Български</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="mk" data-label="MK">Македонски</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="ka" data-label="KA">ქართული</button>
+
+          <button class="lang-option block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  data-lang="be" data-label="BE">Беларуская</button>
+        </div>
+      </div>
+
+      <!-- Google translate mount point, sakriven -->
+      <div id="google_translate_element" class="hidden"></div>
+      <div class="theme-switcher">
+        <button id="themeBtn" class="theme-btn">
+          Izgled: <span id="currentThemeLabel">custom</span> ⌄
+        </button>
+
+        <div id="themeDropdown" class="theme-dropdown">
+          <button data-palette="custom">Custom</button>
+          <button data-palette="light">Light</button>
+          <button data-palette="dark">Dark</button>
+        </div>
+      </div>
+
+
     </nav>
   </div>
 </header>

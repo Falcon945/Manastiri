@@ -2,6 +2,131 @@
 const $ = s => document.querySelector(s);
 const app = $("#app");
 
+/* ================= HEADER INTERAKCIJA (jezik + palette) ================= */
+
+function initHeaderUI() {
+  // --- 1) LANGUAGE DROPDOWN + GOOGLE TRANSLATE ---
+
+  // helper: vrati <select> koji Google ubaci
+  function getTranslateSelect() {
+    return document.querySelector('#google_translate_element select');
+  }
+
+  // promena jezika (sr = nazad na originalni srpski)
+  function setLanguage(langCode) {
+  const select = getTranslateSelect();
+  if (!select) {
+    setTimeout(() => setLanguage(langCode), 200);
+    return;
+  }
+
+  // Ako korisnik želi srpski, resetuj prevod i osveži stranicu
+  if (langCode === 'sr') {
+    // uklanja Google Translate cookie i vraća original
+    document.cookie.split(";").forEach(function(c) {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    location.reload();
+    return;
+  }
+
+  // Postavi izabrani jezik i pokreni prevod
+  select.value = langCode;
+  select.dispatchEvent(new Event("change"));
+}
+
+  const dropdownButton = document.getElementById('lang-dropdown-button');
+  const dropdownMenu   = document.getElementById('lang-dropdown-menu');
+  const currentLabel   = document.getElementById('lang-current-label');
+  const wrapper        = document.getElementById('lang-dropdown-wrapper');
+
+  if (dropdownButton && dropdownMenu) {
+    // otvori/zatvori meni jezika
+    dropdownButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden');
+    });
+  }
+
+  // klik na neku opciju jezika
+  document.querySelectorAll('.lang-option').forEach(option => {
+    option.addEventListener('click', () => {
+      const chosenLang  = option.getAttribute('data-lang');   // npr "en"
+      const chosenLabel = option.getAttribute('data-label');  // npr "EN"
+
+      if (currentLabel) {
+        currentLabel.textContent = chosenLabel;
+      }
+
+      dropdownMenu?.classList.add('hidden');
+
+      // prebaci jezik
+      setLanguage(chosenLang);
+    });
+  });
+
+  // klik van dropdowna => zatvori meni jezika
+  document.addEventListener('click', (e) => {
+    if (wrapper && !wrapper.contains(e.target)) {
+      dropdownMenu?.classList.add('hidden');
+    }
+  });
+
+
+  // --- 2) THEME / PALETTE DROPDOWN (custom / light / dark) ---
+
+  const PALETTE_KEY = "manastiri-palette";
+  const root = document.documentElement;   // <html>
+  const paletteBtn = document.getElementById("themeBtn");
+  const paletteDropdown = document.getElementById("themeDropdown");
+  const currentPaletteLabel = document.getElementById("currentThemeLabel");
+
+  function applyPalette(paletteName) {
+    const valid = ["custom", "light", "dark"];
+    const finalPalette = valid.includes(paletteName) ? paletteName : "custom";
+
+    root.setAttribute("data-palette", finalPalette);
+    localStorage.setItem(PALETTE_KEY, finalPalette);
+
+    if (currentPaletteLabel) {
+      currentPaletteLabel.textContent = finalPalette;
+    }
+  }
+
+  // inicijalno postavi paletu sad kad #currentThemeLabel postoji u headeru
+  const saved = localStorage.getItem(PALETTE_KEY) || "custom";
+  applyPalette(saved);
+
+  if (paletteBtn && paletteDropdown) {
+    // otvori/zatvori dropdown za paletu
+    paletteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const visible = paletteDropdown.style.display === "flex";
+      paletteDropdown.style.display = visible ? "none" : "flex";
+    });
+
+    // klik na neku opciju u dropdownu
+    paletteDropdown.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-palette]");
+      if (!btn) return;
+      const chosen = btn.getAttribute("data-palette");
+      applyPalette(chosen);
+      paletteDropdown.style.display = "none";
+    });
+
+    // klik van dropdowna zatvara meni
+    document.addEventListener("click", (e) => {
+      if (!paletteDropdown.contains(e.target) && e.target !== paletteBtn) {
+        paletteDropdown.style.display = "none";
+      }
+    });
+  }
+}
+
+
+/* ================= SCROLL TO TOP BUTTON COLOR ================= */
+
 function updateScrollBtnColor(theme) {
   const btn = document.getElementById("scrollTopBtn");
   if (!btn) return;
@@ -11,37 +136,55 @@ function updateScrollBtnColor(theme) {
     case "gold":  color = "#d4af37"; break; // zlatna
     case "bordo": color = "#800020"; break; // bordo
     case "green": color = "#2f6e2f"; break; // tamnozelena
-    default:      color = "#444"; break;    // siva kao fallback
+    default:      color = "#444"; break;    // fallback
   }
 
   btn.style.background = color;
   btn.style.color = "#fff";
 }
-/* ============ Tema (umesto PHP $theme) ============ */
+
+
+/* ============ Tema rute (zelena/zlatna/bordo) ============ */
 function setTheme(theme = "green") {
   const allowed = ["green", "gold", "bordo"];
   document.body.dataset.theme = allowed.includes(theme) ? theme : "green";
-   updateScrollBtnColor(theme);
+  updateScrollBtnColor(theme);
 }
+
 
 /* ============ Header/Footer partials ============ */
 async function loadPartials() {
   const [hdr, ftr] = await Promise.all([
-    fetch("inc/header.html").then(r => { if(!r.ok) throw new Error("inc/header.html "+r.status); return r.text(); }),
-    fetch("inc/footer.html").then(r => { if(!r.ok) throw new Error("inc/footer.html "+r.status); return r.text(); }),
+    fetch("inc/header.html").then(r => {
+      if(!r.ok) throw new Error("inc/header.html "+r.status);
+      return r.text();
+    }),
+    fetch("inc/footer.html").then(r => {
+      if(!r.ok) throw new Error("inc/footer.html "+r.status);
+      return r.text();
+    }),
   ]);
+
   $("#site-header").innerHTML = hdr;
   $("#site-footer").innerHTML = ftr;
 }
 
-/* ============ Routing ============ */
+
+/* ============ Routing setup ============ */
 const routes = {
   "": "pages/home.html",
   "manastiri": "pages/manastiri.html",
   "izvori": "pages/izvori.html",
   "Istorijat": "pages/istorijat.html",
 };
-function parseHash(){ return location.hash.replace(/^#\//,"").split("/").filter(Boolean); }
+
+function parseHash(){
+  return location.hash
+    .replace(/^#\//,"")
+    .split("/")
+    .filter(Boolean);
+}
+
 
 /* Učitaj stranicu u #app i izvrši <script> tagove (radi i za type="module") */
 async function loadPage(path){
@@ -53,13 +196,20 @@ async function loadPage(path){
   for (const old of scripts) {
     const s = document.createElement("script");
     if (old.type) s.type = old.type;
-    if (old.src) s.src = old.src; else s.textContent = old.textContent;
+    if (old.src) {
+      s.src = old.src;
+    } else {
+      s.textContent = old.textContent;
+    }
     for (const {name, value} of [...old.attributes]) {
-      if (name !== "src" && name !== "type") s.setAttribute(name, value);
+      if (name !== "src" && name !== "type") {
+        s.setAttribute(name, value);
+      }
     }
     old.replaceWith(s);
   }
 }
+
 
 /* ============ Detalj manastira (#/manastir/<slug>) ============ */
 async function renderManastirDetail(slug){
@@ -96,9 +246,10 @@ async function renderManastirDetail(slug){
     </article>`;
 }
 
+
 /* ============ Lista manastira (inicijalizacija strane) ============ */
 async function initManastiriPage(){
-  // tema
+  // zlatna tema za listu
   setTheme("gold");
 
   // elementi koje očekujemo na strani
@@ -142,24 +293,24 @@ async function initManastiriPage(){
   }
 
   function apply() {
-  const needle = (q.value || "").trim().toLowerCase();
+    const needle = (q.value || "").trim().toLowerCase();
 
-  filtered = all.filter(m => {
-    const hay = `
-      ${m.naziv || ""} 
-      ${m.mesto || ""} 
-      ${m.region || ""} 
-      ${m.opis || ""} 
-      ${m.status || ""}
-    `.toLowerCase();
+    filtered = all.filter(m => {
+      const hay = `
+        ${m.naziv || ""} 
+        ${m.mesto || ""} 
+        ${m.region || ""} 
+        ${m.opis || ""} 
+        ${m.status || ""}
+      `.toLowerCase();
 
-    return !needle || hay.includes(needle);
-  });
+      return !needle || hay.includes(needle);
+    });
 
-  resetBtn?.classList.toggle("hidden", needle === "");
-  page = 1;
-  render();
-}
+    resetBtn?.classList.toggle("hidden", needle === "");
+    page = 1;
+    render();
+  }
 
   function render() {
     const total  = filtered.length;
@@ -241,27 +392,28 @@ async function initManastiriPage(){
   apply();
 }
 
-/* ============ Router ============ */
+
+/* ============ Router (hashchange) ============ */
 async function route(){
   try{
     const parts = parseHash(); // npr ["manastir","studenica"]
 
-    // detaljna strana
+    // detaljna strana manastira
     if (parts[0] === "manastir" && parts[1]) {
       await renderManastirDetail(parts[1]);
       return;
     }
 
-    // tema po ruti
+    // postavi temu (zelena / zlato / bordo) po ruti
     if (parts[0] === "manastiri") setTheme("gold");
     else if (parts[0] === "izvori") setTheme("bordo");
-    else if (parts[0] === "Istorijat") setTheme("bordo"); // ili napravi novu nijansu kasnije
+    else if (parts[0] === "Istorijat") setTheme("bordo"); // možeš kasnije posebnu temu
     else setTheme("green");
 
-    // učitaj HTML
+    // učitaj HTML rute
     await loadPage(routes[parts[0] || ""]);
 
-    // pokreni inicijalizaciju specifične strane
+    // dodatna inicijalizacija tamo gde treba
     if ((parts[0] || "") === "manastiri") {
       await initManastiriPage();
     }
@@ -273,8 +425,10 @@ async function route(){
 
 window.addEventListener("hashchange", route);
 
-/* ============ Init ============ */
+
+/* ============ Init (load header/footer -> initHeaderUI -> route) ============ */
 (async function(){
-  await loadPartials();
-  await route();
+  await loadPartials();  // ubaci header/footer u DOM
+  initHeaderUI();        // SADA elementi postoje -> tek sad kači liste nere
+  await route();         // sad odredi stranicu / temu / sadržaj
 })();
