@@ -2,41 +2,75 @@
 const $ = s => document.querySelector(s);
 const app = $("#app");
 
-/* ================= HEADER INTERAKCIJA (jezik + palette) ================= */
+/* ===========================================================
+   GLOBAL FUNKCIJE - JEZIK / TEMA (shared desktop + mobile)
+   =========================================================== */
 
-function initHeaderUI() {
-  // --- 1) LANGUAGE DROPDOWN + GOOGLE TRANSLATE ---
+// helper: vrati <select> koji Google ubaci
+function getTranslateSelect() {
+  return document.querySelector('#google_translate_element select');
+}
 
-  // helper: vrati <select> koji Google ubaci
-  function getTranslateSelect() {
-    return document.querySelector('#google_translate_element select');
-  }
-
-  // promena jezika (sr = nazad na originalni srpski)
-  function setLanguage(langCode) {
+// menjaj jezik (langCode = 'en', 'ru' ... / 'sr' = vrati original)
+function setLanguage(langCode) {
   const select = getTranslateSelect();
+
   if (!select) {
+    // Google ubacuje <select> asinhrono -> probaj opet posle 200ms
     setTimeout(() => setLanguage(langCode), 200);
     return;
   }
 
-  // Ako korisnik želi srpski, resetuj prevod i osveži stranicu
+  // povratak na srpski = reset prevoda
   if (langCode === 'sr') {
-    // uklanja Google Translate cookie i vraća original
+    // počisti google translate kolačiće
     document.cookie.split(";").forEach(function(c) {
       document.cookie = c
         .replace(/^ +/, "")
         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
+    // full reload da vrati originalni tekst
     location.reload();
     return;
   }
 
-  // Postavi izabrani jezik i pokreni prevod
+  // postavi izabrani jezik i triggeruj promenu
   select.value = langCode;
   select.dispatchEvent(new Event("change"));
 }
 
+// tema/paleta (custom | light | dark)
+const PALETTE_KEY = "manastiri-palette";
+function applyPalette(paletteName) {
+  const valid = ["custom", "light", "dark"];
+  const finalPalette = valid.includes(paletteName) ? paletteName : "custom";
+
+  const root = document.documentElement; // <html>
+
+  // set na <html data-palette="...">
+  root.setAttribute("data-palette", finalPalette);
+  // zapamti izbor
+  localStorage.setItem(PALETTE_KEY, finalPalette);
+
+  // update label desktop
+  const labelDesktop = document.getElementById("currentThemeLabel");
+  if (labelDesktop) {
+    labelDesktop.textContent = finalPalette;
+  }
+
+  // update label mobile
+  const labelMobile = document.getElementById("currentThemeLabelMobile");
+  if (labelMobile) {
+    labelMobile.textContent = finalPalette;
+  }
+}
+
+/* ===========================================================
+   HEADER UI (DESKTOP DROPDOWNI)
+   =========================================================== */
+
+function initHeaderUI() {
+  // --- LANGUAGE DROPDOWN (desktop) ---
   const dropdownButton = document.getElementById('lang-dropdown-button');
   const dropdownMenu   = document.getElementById('lang-dropdown-menu');
   const currentLabel   = document.getElementById('lang-current-label');
@@ -44,7 +78,8 @@ function initHeaderUI() {
 
   if (dropdownButton && dropdownMenu) {
     // otvori/zatvori meni jezika
-    dropdownButton.addEventListener('click', () => {
+    dropdownButton.addEventListener('click', (e) => {
+      e.stopPropagation();
       dropdownMenu.classList.toggle('hidden');
     });
   }
@@ -61,7 +96,7 @@ function initHeaderUI() {
 
       dropdownMenu?.classList.add('hidden');
 
-      // prebaci jezik
+      // prebaci stvarno jezik
       setLanguage(chosenLang);
     });
   });
@@ -74,58 +109,163 @@ function initHeaderUI() {
   });
 
 
-  // --- 2) THEME / PALETTE DROPDOWN (custom / light / dark) ---
+  // --- THEME / PALETTE DROPDOWN (desktop) ---
+  const paletteBtn        = document.getElementById("themeBtn");
+  const paletteDropdown   = document.getElementById("themeDropdown");
 
-  const PALETTE_KEY = "manastiri-palette";
-  const root = document.documentElement;   // <html>
-  const paletteBtn = document.getElementById("themeBtn");
-  const paletteDropdown = document.getElementById("themeDropdown");
-  const currentPaletteLabel = document.getElementById("currentThemeLabel");
-
-  function applyPalette(paletteName) {
-    const valid = ["custom", "light", "dark"];
-    const finalPalette = valid.includes(paletteName) ? paletteName : "custom";
-
-    root.setAttribute("data-palette", finalPalette);
-    localStorage.setItem(PALETTE_KEY, finalPalette);
-
-    if (currentPaletteLabel) {
-      currentPaletteLabel.textContent = finalPalette;
-    }
-  }
-
-  // inicijalno postavi paletu sad kad #currentThemeLabel postoji u headeru
+  // prvo postavi paletu iz localStorage
   const saved = localStorage.getItem(PALETTE_KEY) || "custom";
   applyPalette(saved);
 
   if (paletteBtn && paletteDropdown) {
-    // otvori/zatvori dropdown za paletu
+    // otvori/zatvori dropdown sa paletama
     paletteBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const visible = paletteDropdown.style.display === "flex";
-      paletteDropdown.style.display = visible ? "none" : "flex";
+      paletteDropdown.classList.toggle("hidden");
+      // obezbedi flex kolonu ako je prikazano
+      if (!paletteDropdown.classList.contains("hidden")) {
+        paletteDropdown.style.display = "flex";
+      } else {
+        paletteDropdown.style.display = "none";
+      }
     });
 
-    // klik na neku opciju u dropdownu
-    paletteDropdown.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-palette]");
-      if (!btn) return;
-      const chosen = btn.getAttribute("data-palette");
-      applyPalette(chosen);
-      paletteDropdown.style.display = "none";
+    // klik na neku temu/paletu
+    paletteDropdown.querySelectorAll("button[data-palette]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const chosen = btn.getAttribute("data-palette");
+        applyPalette(chosen);
+
+        // zatvori dropdown
+        paletteDropdown.classList.add("hidden");
+        paletteDropdown.style.display = "none";
+      });
     });
 
-    // klik van dropdowna zatvara meni
+    // klik van dropdowna -> zatvori
     document.addEventListener("click", (e) => {
       if (!paletteDropdown.contains(e.target) && e.target !== paletteBtn) {
+        paletteDropdown.classList.add("hidden");
         paletteDropdown.style.display = "none";
       }
     });
   }
 }
 
+/* ===========================================================
+   MOBILE UI (BURGER + MOBILE DROPDOWNI)
+   =========================================================== */
 
-/* ================= SCROLL TO TOP BUTTON COLOR ================= */
+function initMobileUI() {
+  // burger dugme i panel
+  const burger      = document.getElementById("mobileMenuToggle");
+  const mobileMenu  = document.getElementById("mobileMenu");
+
+  if (burger && mobileMenu) {
+    // otvori/zatvori panel
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // klik van panela zatvara
+    document.addEventListener("click", (e) => {
+      if (!mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  }
+
+  // MOBILE LANGUAGE DROPDOWN
+  const langBtnMobile    = document.getElementById("lang-dropdown-button-mobile");
+  const langMenuMobile   = document.getElementById("lang-dropdown-menu-mobile");
+  const langLabelMobile  = document.getElementById("lang-current-label-mobile");
+
+  if (langBtnMobile && langMenuMobile) {
+    // otvori/zatvori dropdown jezika u mobilnom meniju
+    langBtnMobile.addEventListener("click", (e) => {
+      e.stopPropagation();
+      langMenuMobile.classList.toggle("hidden");
+    });
+
+    // klik na opciju jezika
+    langMenuMobile.querySelectorAll(".lang-option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        const chosenLang  = opt.getAttribute("data-lang");
+        const chosenLabel = opt.getAttribute("data-label");
+
+        if (langLabelMobile) {
+          langLabelMobile.textContent = chosenLabel;
+        }
+
+        // globalni prevod
+        setLanguage(chosenLang);
+
+        // zatvori dropdown listu jezika
+        langMenuMobile.classList.add("hidden");
+        // po želji: i panel u celosti
+        // mobileMenu.classList.add("hidden");
+      });
+    });
+
+    // klik van dropdowna jezika u mobilnom -> zatvori
+    document.addEventListener("click", (e) => {
+      if (
+        !langMenuMobile.contains(e.target) &&
+        !langBtnMobile.contains(e.target)
+      ) {
+        langMenuMobile.classList.add("hidden");
+      }
+    });
+  }
+
+  // MOBILE THEME DROPDOWN
+  const themeBtnMobile        = document.getElementById("themeBtnMobile");
+  const themeDropdownMobile   = document.getElementById("themeDropdownMobile");
+  const themeLabelMobile      = document.getElementById("currentThemeLabelMobile");
+
+  if (themeBtnMobile && themeDropdownMobile) {
+    // otvori/zatvori dropdown tema
+    themeBtnMobile.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themeDropdownMobile.classList.toggle("hidden");
+    });
+
+    // klik na konkretnu paletu
+    themeDropdownMobile.querySelectorAll("button[data-palette]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const chosen = btn.getAttribute("data-palette");
+
+        applyPalette(chosen); // globalno postavljanje teme
+
+        if (themeLabelMobile) {
+          themeLabelMobile.textContent = chosen;
+        }
+        const themeLabelDesktop = document.getElementById("currentThemeLabel");
+        if (themeLabelDesktop) {
+          themeLabelDesktop.textContent = chosen;
+        }
+
+        // zatvori dropdown
+        themeDropdownMobile.classList.add("hidden");
+      });
+    });
+
+    // klik van dropdowna teme -> zatvori
+    document.addEventListener("click", (e) => {
+      if (
+        !themeDropdownMobile.contains(e.target) &&
+        !themeBtnMobile.contains(e.target)
+      ) {
+        themeDropdownMobile.classList.add("hidden");
+      }
+    });
+  }
+}
+
+/* ===========================================================
+   SCROLL TO TOP BUTTON COLOR (akcenat po ruti)
+   =========================================================== */
 
 function updateScrollBtnColor(theme) {
   const btn = document.getElementById("scrollTopBtn");
@@ -143,16 +283,18 @@ function updateScrollBtnColor(theme) {
   btn.style.color = "#fff";
 }
 
-
-/* ============ Tema rute (zelena/zlatna/bordo) ============ */
+/* ===========================================================
+   AKCENT TEMA PO RUTI (zelena / zlatna / bordo)
+   =========================================================== */
 function setTheme(theme = "green") {
   const allowed = ["green", "gold", "bordo"];
   document.body.dataset.theme = allowed.includes(theme) ? theme : "green";
   updateScrollBtnColor(theme);
 }
 
-
-/* ============ Header/Footer partials ============ */
+/* ===========================================================
+   HEADER / FOOTER partials (dinamički include)
+   =========================================================== */
 async function loadPartials() {
   const [hdr, ftr] = await Promise.all([
     fetch("inc/header.html").then(r => {
@@ -169,8 +311,10 @@ async function loadPartials() {
   $("#site-footer").innerHTML = ftr;
 }
 
+/* ===========================================================
+   ROUTING definicije
+   =========================================================== */
 
-/* ============ Routing setup ============ */
 const routes = {
   "": "pages/home.html",
   "manastiri": "pages/manastiri.html",
@@ -185,13 +329,15 @@ function parseHash(){
     .filter(Boolean);
 }
 
-
-/* Učitaj stranicu u #app i izvrši <script> tagove (radi i za type="module") */
+/* ===========================================================
+   Load page HTML u #app i izvrši <script> tagove iz nje
+   =========================================================== */
 async function loadPage(path){
   const r = await fetch(path);
   if(!r.ok) throw new Error(path+" "+r.status);
   app.innerHTML = await r.text();
 
+  // re-run script tagove iz ubačenog HTML-a
   const scripts = app.querySelectorAll("script");
   for (const old of scripts) {
     const s = document.createElement("script");
@@ -210,8 +356,9 @@ async function loadPage(path){
   }
 }
 
-
-/* ============ Detalj manastira (#/manastir/<slug>) ============ */
+/* ===========================================================
+   Detaljna strana manastira (#/manastir/<slug>)
+   =========================================================== */
 async function renderManastirDetail(slug){
   setTheme("gold");
 
@@ -246,13 +393,13 @@ async function renderManastirDetail(slug){
     </article>`;
 }
 
-
-/* ============ Lista manastira (inicijalizacija strane) ============ */
+/* ===========================================================
+   Lista manastira (stranica /manastiri)
+   =========================================================== */
 async function initManastiriPage(){
-  // zlatna tema za listu
+  // zlatna tema
   setTheme("gold");
 
-  // elementi koje očekujemo na strani
   const q           = $("#q");
   const resetBtn    = $("#resetBtn");
   const list        = $("#list");
@@ -275,7 +422,7 @@ async function initManastiriPage(){
     if (pagerBottom) pagerBottom.innerHTML = "";
   };
 
-  // Učitaj JSON sa “cache-bust” parametrom
+  // učitaj JSON
   try {
     const r = await fetch("data/manastiri.json?_=" + Date.now());
     if (!r.ok) throw new Error(`HTTP ${r.status} pri čitanju data/manastiri.json`);
@@ -359,6 +506,7 @@ async function initManastiriPage(){
       </div>`;
     }).join("");
 
+    // paginacija
     const makePager = (el) => {
       if (!el) return;
       el.innerHTML = "";
@@ -392,28 +540,34 @@ async function initManastiriPage(){
   apply();
 }
 
-
-/* ============ Router (hashchange) ============ */
+/* ===========================================================
+   ROUTER
+   =========================================================== */
 async function route(){
   try{
     const parts = parseHash(); // npr ["manastir","studenica"]
 
-    // detaljna strana manastira
+    // detaljna strana
     if (parts[0] === "manastir" && parts[1]) {
       await renderManastirDetail(parts[1]);
       return;
     }
 
-    // postavi temu (zelena / zlato / bordo) po ruti
-    if (parts[0] === "manastiri") setTheme("gold");
-    else if (parts[0] === "izvori") setTheme("bordo");
-    else if (parts[0] === "Istorijat") setTheme("bordo"); // možeš kasnije posebnu temu
-    else setTheme("green");
+    // postavi akcent-temu po ruti
+    if (parts[0] === "manastiri") {
+      setTheme("gold");
+    } else if (parts[0] === "izvori") {
+      setTheme("bordo");
+    } else if (parts[0] === "Istorijat") {
+      setTheme("bordo"); // može kasnije posebna
+    } else {
+      setTheme("green");
+    }
 
     // učitaj HTML rute
     await loadPage(routes[parts[0] || ""]);
 
-    // dodatna inicijalizacija tamo gde treba
+    // dodatna inicijalizacija samo za /manastiri
     if ((parts[0] || "") === "manastiri") {
       await initManastiriPage();
     }
@@ -425,10 +579,17 @@ async function route(){
 
 window.addEventListener("hashchange", route);
 
-
-/* ============ Init (load header/footer -> initHeaderUI -> route) ============ */
+/* ===========================================================
+   INIT SEKVENCA
+   =========================================================== */
 (async function(){
-  await loadPartials();  // ubaci header/footer u DOM
-  initHeaderUI();        // SADA elementi postoje -> tek sad kači liste nere
-  await route();         // sad odredi stranicu / temu / sadržaj
+  // 1. ubaci header/footer u DOM
+  await loadPartials();
+
+  // 2. sada kad header postoji -> init desktop i mobile
+  initHeaderUI();
+  initMobileUI();
+
+  // 3. prva ruta
+  await route();
 })();

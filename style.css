@@ -266,3 +266,10 @@ body[data-theme="bordo"] { --accent: #800020; }  /* Izvori, Istorija */
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.5);
 }
+#mobile-menu::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
