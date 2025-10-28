@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# kaži gde je mapa sajta
+Sitemap: https://falcon945.github.io/sitemap.xml

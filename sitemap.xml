@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Početna -->
+  <url>
+    <loc>https://falcon945.github.io/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Lista manastira -->
+  <url>
+    <loc>https://falcon945.github.io/#/manastiri</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Istorija / Istorijat -->
+  <url>
+    <loc>https://falcon945.github.io/#/Istorijat</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Izvori -->
+  <url>
+    <loc>https://falcon945.github.io/#/izvori</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

@@ -319,7 +319,7 @@ const routes = {
   "": "pages/home.html",
   "manastiri": "pages/manastiri.html",
   "izvori": "pages/izvori.html",
-  "Istorijat": "pages/istorijat.html",
+  "Istorijat": "pages/Istorijat.html",
 };
 
 function parseHash(){
